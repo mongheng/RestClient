@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+ <menu xmlns:android="http://schemas.android.com/apk/res/android"
+       xmlns:app="http://schemas.android.com/apk/res-auto"
+       xmlns:tools="http://schemas.android.com/tools"
+       tools:context="com.earmongheng.restclient.MainActivity">
+
+       <item
+           android:id="@+id/login"
+           android:title="Login"
+           android:orderInCategory="100"
+           />
+       <item
+           android:id="@+id/setting"
+           android:title="Setting"
+           android:orderInCategory="100">
+
+           <menu>
+               <item
+                   android:id="@+id/update"
+                   android:title="Update"
+                   android:orderInCategory="100"
+                   />
+           </menu>
+       </item>
+
+       <item
+           android:id="@+id/addhouse"
+           android:title="Add Your House"
+           android:orderInCategory="100"
+           />
+       <item
+           android:id="@+id/signup"
+           android:title="SignUp"
+           android:orderInCategory="100"
+           />
+       <item
+           android:id="@+id/signout"
+           android:title="Sign out"
+           android:orderInCategory="100"
+           />
+</menu>
