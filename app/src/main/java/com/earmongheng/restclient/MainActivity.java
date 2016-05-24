@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private String url = "http://192.168.1.138:8080/Realestate/";
     private User user = null;
     private Bundle extras;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
