@@ -18,5 +18,13 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="price">Price :</string>
+    <string name="deposit">Deposit :</string>
+    <string name="latitude">Latitude :</string>
+    <string name="longtitude">Longtitude :</string>
+    <string name="no_image_selected">No Image Selected</string>
     <string name="selectimage">SelectImage</string>
+    <string name="description">Description :</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
 </resources>

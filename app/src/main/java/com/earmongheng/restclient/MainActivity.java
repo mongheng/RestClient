@@ -202,7 +202,7 @@ public class MainActivity extends AppCompatActivity {
             TextView txtDescription = (TextView) convertView.findViewById(R.id.txtDescription);
 
             txtPrice.setText(String.valueOf(houses.get(position).getPrice()));
-            txtDeposit.setText(String.valueOf(houses.get(position).getDeposite()));
+            txtDeposit.setText(String.valueOf(houses.get(position).getDeposit()));
             txtDescription.setText(houses.get(position).getDescription());
 
             byte [] image = Base64.decode(houses.get(position).getPicture(),Base64.DEFAULT);
@@ -221,12 +221,12 @@ public class MainActivity extends AppCompatActivity {
             }
             googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
             for (House house: houses) {
-                LatLng position = new LatLng(house.getLatitute(),house.getLongtitute());
+                LatLng position = new LatLng(house.getLatitude(),house.getLongtitude());
                 MarkerOptions markerOptions = new MarkerOptions();
 
                 markerOptions.position(position);
                 markerOptions.title("position");
-                markerOptions.snippet("Latitude:" + house.getLatitute() + ",Longitude:" + house.getLongtitute());
+                markerOptions.snippet("Latitude:" + house.getLatitude() + ",Longitude:" + house.getLongtitude());
 
                 googleMap.addMarker(markerOptions);
             }

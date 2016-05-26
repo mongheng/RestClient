@@ -7,8 +7,12 @@ import com.earmongheng.restclient.models.User;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.protocol.HTTP;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -87,8 +91,8 @@ public class ConvertData {
                     for (int j = 0; j < jsonhouses.length(); j++) {
                         JSONObject jsonhouse = jsonhouses.getJSONObject(j);
 
-                        House house = new House(jsonhouse.getInt("houseid"),jsonhouse.getLong("price"),jsonhouse.getLong("deposite"),
-                                jsonhouse.getString("description"),jsonhouse.getDouble("latitute"),jsonhouse.getDouble("longtitute"),
+                        House house = new House(jsonhouse.getInt("houseid"),jsonhouse.getLong("price"),jsonhouse.getLong("deposit"),
+                                jsonhouse.getString("description"),jsonhouse.getDouble("latitude"),jsonhouse.getDouble("longtitude"),
                                 jsonhouse.getString("picture"));
 
                         houses.add(house);
@@ -115,8 +119,8 @@ public class ConvertData {
                 JSONObject jsonData = (JSONObject) data;
                 JSONObject jsonHouse = jsonData.getJSONArray("houses").getJSONObject(0);
 
-                house = new House(jsonHouse.getInt("houseid"),jsonHouse.getLong("price"),jsonHouse.getLong("deposite"),
-                        jsonHouse.getString("description"),jsonHouse.getDouble("latitute"),jsonHouse.getDouble("longtitute"),
+                house = new House(jsonHouse.getInt("houseid"),jsonHouse.getLong("price"),jsonHouse.getLong("deposit"),
+                        jsonHouse.getString("description"),jsonHouse.getDouble("latitude"),jsonHouse.getDouble("longtiude"),
                         jsonHouse.getString("picture"));
 
             }else {
@@ -195,5 +199,43 @@ public class ConvertData {
             ex.printStackTrace();
         }
         return (T2) currentObject;
+    }
+
+    private static List<BasicNameValuePair> setUserAndHouse(User user, House house) {
+        List<BasicNameValuePair> basicNameValuePairs = new ArrayList<BasicNameValuePair>();
+        if (user != null) {
+            basicNameValuePairs.add(new BasicNameValuePair("userid", String.valueOf(user.getUserid())));
+            basicNameValuePairs.add(new BasicNameValuePair("username", user.getUsername()));
+            basicNameValuePairs.add(new BasicNameValuePair("password", user.getPassword()));
+            basicNameValuePairs.add(new BasicNameValuePair("telephone", user.getTelephone()));
+            basicNameValuePairs.add(new BasicNameValuePair("email", user.getEmail()));
+        }
+        if (house != null) {
+            basicNameValuePairs.add(new BasicNameValuePair("houseid",String.valueOf(house.getHouseid())));
+            basicNameValuePairs.add(new BasicNameValuePair("price",String.valueOf(house.getPrice())));
+            basicNameValuePairs.add(new BasicNameValuePair("deposit",String.valueOf(house.getDeposit())));
+            basicNameValuePairs.add(new BasicNameValuePair("description",String.valueOf(house.getDescription())));
+            basicNameValuePairs.add(new BasicNameValuePair("latitude",String.valueOf(house.getLatitude())));
+            basicNameValuePairs.add(new BasicNameValuePair("longtitude",String.valueOf(house.getLongtitude())));
+            basicNameValuePairs.add(new BasicNameValuePair("picture",String.valueOf(house.getPicture())));
+        }
+        return basicNameValuePairs;
+    }
+
+    public static void postData(String url, User user, House house) {
+
+        try {
+            List<BasicNameValuePair> users = setUserAndHouse(user, house);
+            HttpClient httpClient = new DefaultHttpClient();
+            HttpPost httpPost = new HttpPost(url);
+            UrlEncodedFormEntity entity = new UrlEncodedFormEntity(users);
+            entity.setContentEncoding(HTTP.UTF_8);
+            httpPost.setEntity(entity);
+
+            HttpResponse httpResponse = httpClient.execute(httpPost);
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
     }
 }

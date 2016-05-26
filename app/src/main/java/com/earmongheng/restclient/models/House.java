@@ -10,10 +10,10 @@ public class House implements Serializable{
 
     private int houseid;
     private float price;
-    private float deposite;
+    private float deposit;
     private String description;
-    private double latitute;
-    private double longtitute;
+    private double latitude;
+    private double longtitude;
     private String picture;
 
     private Type type;
@@ -23,13 +23,13 @@ public class House implements Serializable{
     public House() {
     }
 
-    public House(int houseid, float price, float deposite, String description, double latitute, double longtitute, String picture) {
+    public House(int houseid, float price, float deposit, String description, double latitude, double longtitude, String picture) {
         this.houseid = houseid;
         this.price = price;
-        this.deposite = deposite;
+        this.deposit = deposit;
         this.description = description;
-        this.latitute = latitute;
-        this.longtitute = longtitute;
+        this.latitude = latitude;
+        this.longtitude = longtitude;
         this.picture = picture;
     }
 
@@ -49,12 +49,12 @@ public class House implements Serializable{
         this.price = price;
     }
 
-    public float getDeposite() {
-        return deposite;
+    public float getDeposit() {
+        return deposit;
     }
 
-    public void setDeposite(float deposite) {
-        this.deposite = deposite;
+    public void setDeposit(float deposit) {
+        this.deposit = deposit;
     }
 
     public String getDescription() {
@@ -65,20 +65,20 @@ public class House implements Serializable{
         this.description = description;
     }
 
-    public double getLatitute() {
-        return latitute;
+    public double getLatitude() {
+        return latitude;
     }
 
-    public void setLatitute(double latitute) {
-        this.latitute = latitute;
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
     }
 
-    public double getLongtitute() {
-        return longtitute;
+    public double getLongtitude() {
+        return longtitude;
     }
 
-    public void setLongtitute(double longtitute) {
-        this.longtitute = longtitute;
+    public void setLongtitude(double longtitude) {
+        this.longtitude = longtitude;
     }
 
     public String getPicture() {
