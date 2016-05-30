@@ -27,7 +27,7 @@ public class RestCallTask extends AsyncTask<String, Void, User> {
         try {
             User user = new User("song","fhe12345","mongheng.song@gmail.com","016556955");
 
-            House house = new House(0,100000,45000,"Test",11.23145,11.23453,null);
+            House house = new House(0,100000,45000,"Test",11.23145,11.23453,null, null);
 
             ConvertData.postData(url[0],user,house);
             return user;

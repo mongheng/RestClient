@@ -14,6 +14,7 @@ public class House implements Serializable{
     private String description;
     private double latitude;
     private double longtitude;
+    private String address;
     private String picture;
 
     private Type type;
@@ -23,13 +24,14 @@ public class House implements Serializable{
     public House() {
     }
 
-    public House(int houseid, float price, float deposit, String description, double latitude, double longtitude, String picture) {
+    public House(int houseid, float price, float deposit, String description, double latitude, double longtitude, String address, String picture) {
         this.houseid = houseid;
         this.price = price;
         this.deposit = deposit;
         this.description = description;
         this.latitude = latitude;
         this.longtitude = longtitude;
+        this.address = address;
         this.picture = picture;
     }
 
@@ -79,6 +81,14 @@ public class House implements Serializable{
 
     public void setLongtitude(double longtitude) {
         this.longtitude = longtitude;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getPicture() {

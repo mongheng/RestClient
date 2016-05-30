@@ -25,7 +25,7 @@
 
        <item
            android:id="@+id/addhouse"
-           android:title="Add Your House"
+           android:title="Add House"
            android:orderInCategory="100"
            />
        <item

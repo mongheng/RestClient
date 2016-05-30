@@ -45,6 +45,23 @@
                 android:layout_height="wrap_content"
                 android:text="Description:"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvLatitude" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/tvLongtitude" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HouseId"
+                android:id="@+id/tvHouseId" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

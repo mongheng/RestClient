@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -13,9 +13,6 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="60sp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:id="@+id/linearLayout5">
 
         <LinearLayout
@@ -26,17 +23,16 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/price"
+                android:text="@string/prices"
                 android:id="@+id/textView2"
                 android:textSize="20sp" />
 
             <EditText
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/etPrice"
-                android:layout_weight="1"
-                android:layout_marginLeft="30sp"
-                android:inputType="number|none" />
+                android:inputType="number|none"
+                android:layout_marginLeft="25sp" />
         </LinearLayout>
     </LinearLayout>
 
@@ -66,8 +62,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/etDeposit"
                 android:layout_weight="1"
-                android:inputType="number|none"
-                android:layout_marginLeft="10sp" />
+                android:layout_marginLeft="15sp"
+                android:inputType="number|none" />
         </LinearLayout>
     </LinearLayout>
 
@@ -76,30 +72,28 @@
         android:layout_width="match_parent"
         android:layout_height="60sp"
         android:layout_below="@+id/linearLayout6"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:id="@+id/linearLayout7">
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal">
+            android:layout_height="match_parent">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/latitude"
+                android:text="@string/houseno"
                 android:id="@+id/textView4"
                 android:textSize="20sp" />
 
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/etLatitude"
+                android:id="@+id/etHouseNo"
                 android:layout_weight="1"
-                android:layout_marginLeft="5sp"
-                android:inputType="none|numberDecimal" />
+                android:inputType="none" />
         </LinearLayout>
     </LinearLayout>
 
@@ -120,27 +114,45 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/longtitude"
-                android:id="@+id/textView5"
+                android:text="@string/street_ex_123"
                 android:textSize="20sp" />
 
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/etLongtitude"
-                android:layout_weight="1"
-                android:inputType="none|numberDecimal" />
+                android:inputType="number"
+                android:ems="10"
+                android:id="@+id/etStreet"
+                android:layout_weight="1" />
         </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="60sp"
+        android:layout_height="45sp"
         android:layout_below="@+id/linearLayout8"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:id="@+id/linearLayout9">
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/spinnerCity"
+            android:prompt="@string/city_prompt"
+            android:entries="@array/city_arrays"
+            android:spinnerMode="dropdown" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="60sp"
+        android:layout_below="@+id/linearLayout9"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/linearLayout10">
 
         <LinearLayout
             android:orientation="horizontal"
@@ -152,8 +164,9 @@
                 android:layout_height="wrap_content"
                 android:text="@string/no_image_selected"
                 android:id="@+id/tvSelectImage"
+                android:textColor="#f70a0a"
                 android:textSize="20sp"
-                android:textColor="#f31b1b" />
+                android:layout_marginTop="5sp" />
 
             <Button
                 style="?android:attr/buttonStyleSmall"
@@ -167,26 +180,26 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="100sp"
-        android:layout_below="@+id/linearLayout9"
+        android:layout_height="60sp"
+        android:layout_below="@+id/linearLayout10"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:id="@+id/linearLayout11">
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal">
+            android:layout_height="match_parent">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/description"
-                android:id="@+id/textView6"
+                android:text="Description : "
+                android:id="@+id/textView5"
                 android:textSize="20sp" />
 
             <EditText
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="textMultiLine"
                 android:ems="10"
@@ -214,14 +227,14 @@
                 android:layout_height="wrap_content"
                 android:text="@string/save"
                 android:id="@+id/btnSave"
-                android:layout_marginLeft="50sp" />
+                android:layout_marginLeft="60sp" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/cancel"
                 android:id="@+id/btnCancel"
-                android:layout_marginLeft="50sp" />
+                android:layout_marginLeft="30sp" />
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

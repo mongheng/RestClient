@@ -27,6 +27,7 @@ import com.earmongheng.restclient.helper.UpdateTask;
 import com.earmongheng.restclient.models.House;
 import com.earmongheng.restclient.models.User;
 import com.earmongheng.restclient.utility.ConvertData;
+import com.earmongheng.restclient.utility.MapLoad;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
@@ -66,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
         new HttpAsyncTask().execute(url);
 
-        AdapterListViewHouse adapterListViewHouse = new AdapterListViewHouse(getBaseContext(),null,lvHouse);
+        AdapterListViewHouse adapterListViewHouse = new AdapterListViewHouse(getBaseContext(),null,lvHouse,googleMap,getFragmentManager());
         adapterListViewHouse.viewImage();
     }
 
@@ -128,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onPrepareOptionsMenu(Menu menu) {
         if (user != null) {
             menu.findItem(R.id.login).setVisible(false);
+            menu.findItem(R.id.signup).setVisible(false);
             menu.findItem(R.id.signout).setVisible(true);
             menu.findItem(R.id.setting).setVisible(true);
             menu.findItem(R.id.addhouse).setVisible(true);
@@ -149,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private class HttpAsyncTask extends AsyncTask<String, Void, String> {
+    public class HttpAsyncTask extends AsyncTask<String, Void, String> {
 
         private JSONObject imageobject = null;
 
@@ -168,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
                 HouseAdapter houseAdapter = new HouseAdapter(getApplicationContext(),R.id.lvHouse,houses);
 
                 lvHouse.setAdapter(houseAdapter);
-                loadMap(houses);
+                MapLoad.loadMap(houses,googleMap,getFragmentManager(),null);
             }
             catch (Exception ex) {
                 ex.printStackTrace();
@@ -200,40 +202,26 @@ public class MainActivity extends AppCompatActivity {
             TextView txtPrice = (TextView) convertView.findViewById(R.id.txtPrice);
             TextView txtDeposit = (TextView) convertView.findViewById(R.id.txtDeposit);
             TextView txtDescription = (TextView) convertView.findViewById(R.id.txtDescription);
+            TextView tvLatitude = (TextView) convertView.findViewById(R.id.tvLatitude);
+            TextView tvLongtitude = (TextView) convertView.findViewById(R.id.tvLongtitude);
+            TextView tvHouseId = (TextView) convertView.findViewById(R.id.tvHouseId);
 
             txtPrice.setText(String.valueOf(houses.get(position).getPrice()));
             txtDeposit.setText(String.valueOf(houses.get(position).getDeposit()));
             txtDescription.setText(houses.get(position).getDescription());
+            tvLatitude.setText(String.valueOf(houses.get(position).getLatitude()));
+            tvLongtitude.setText(String.valueOf(houses.get(position).getLongtitude()));
+            tvHouseId.setText(String.valueOf(houses.get(position).getHouseid()));
+
+            tvLatitude.setVisibility(View.INVISIBLE);
+            tvLongtitude.setVisibility(View.INVISIBLE);
+            tvHouseId.setVisibility(View.INVISIBLE);
 
             byte [] image = Base64.decode(houses.get(position).getPicture(),Base64.DEFAULT);
             Bitmap bmp = BitmapFactory.decodeByteArray(image,0,image.length);
             ivHouseIcon.setImageBitmap(bmp);
 
             return convertView;
-        }
-    }
-
-    private void loadMap(List<House> houses) {
-
-        try {
-            if (googleMap == null) {
-                googleMap = ((MapFragment)getFragmentManager().findFragmentById(R.id.map)).getMap();
-            }
-            googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-            for (House house: houses) {
-                LatLng position = new LatLng(house.getLatitude(),house.getLongtitude());
-                MarkerOptions markerOptions = new MarkerOptions();
-
-                markerOptions.position(position);
-                markerOptions.title("position");
-                markerOptions.snippet("Latitude:" + house.getLatitude() + ",Longitude:" + house.getLongtitude());
-
-                googleMap.addMarker(markerOptions);
-            }
-            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(11.5449,104.8922),14.0f));
-        }
-        catch(Exception ex) {
-            ex.printStackTrace();
         }
     }
 }

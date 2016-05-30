@@ -93,7 +93,7 @@ public class ConvertData {
 
                         House house = new House(jsonhouse.getInt("houseid"),jsonhouse.getLong("price"),jsonhouse.getLong("deposit"),
                                 jsonhouse.getString("description"),jsonhouse.getDouble("latitude"),jsonhouse.getDouble("longtitude"),
-                                jsonhouse.getString("picture"));
+                                jsonhouse.getString("address"),jsonhouse.getString("picture"));
 
                         houses.add(house);
                     }
@@ -121,7 +121,7 @@ public class ConvertData {
 
                 house = new House(jsonHouse.getInt("houseid"),jsonHouse.getLong("price"),jsonHouse.getLong("deposit"),
                         jsonHouse.getString("description"),jsonHouse.getDouble("latitude"),jsonHouse.getDouble("longtiude"),
-                        jsonHouse.getString("picture"));
+                        jsonHouse.getString("address"),jsonHouse.getString("picture"));
 
             }else {
                 house = null;
@@ -217,6 +217,7 @@ public class ConvertData {
             basicNameValuePairs.add(new BasicNameValuePair("description",String.valueOf(house.getDescription())));
             basicNameValuePairs.add(new BasicNameValuePair("latitude",String.valueOf(house.getLatitude())));
             basicNameValuePairs.add(new BasicNameValuePair("longtitude",String.valueOf(house.getLongtitude())));
+            basicNameValuePairs.add(new BasicNameValuePair("address",house.getAddress()));
             basicNameValuePairs.add(new BasicNameValuePair("picture",String.valueOf(house.getPicture())));
         }
         return basicNameValuePairs;
@@ -237,5 +238,17 @@ public class ConvertData {
         catch(Exception ex){
             ex.printStackTrace();
         }
+    }
+
+    public static <T> T getEntityObject(String entity1, Class<T> entity2) {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            T currentEntity = objectMapper.readValue(entity1,entity2);
+
+            return (T) currentEntity;
+        }catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
     }
 }
