@@ -36,6 +36,7 @@ public class MapLoad {
                     googleMap.addMarker(markerOptions);
                 }
             }
+            googleMap.getUiSettings().setZoomControlsEnabled(true);
             if (latLng == null) {
                 googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(11.5449, 104.8922), 14.0f));
             }else {
