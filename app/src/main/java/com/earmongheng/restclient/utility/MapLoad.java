@@ -1,13 +1,18 @@
 package com.earmongheng.restclient.utility;
 
 import android.app.FragmentManager;
+import android.content.Context;
+import android.content.Intent;
+import android.widget.Toast;
 
 import com.earmongheng.restclient.R;
+import com.earmongheng.restclient.SignupActivity;
 import com.earmongheng.restclient.models.House;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.List;
@@ -15,14 +20,21 @@ import java.util.List;
 /**
  * Created by earmongheng on 5/29/2016.
  */
-public class MapLoad {
+public class MapLoad /*implements GoogleMap.OnMarkerClickListener*/ {
 
-    public static void loadMap(List<House> houses, GoogleMap googleMap, FragmentManager fragmentManager, LatLng latLng) {
+    private Context context;
+
+    public MapLoad(Context context) {
+        this.context = context;
+    }
+
+    public void loadMap(List<House> houses, GoogleMap googleMap, FragmentManager fragmentManager, LatLng latLng) {
 
         try {
             if (googleMap == null) {
                 googleMap = ((MapFragment) fragmentManager.findFragmentById(R.id.map)).getMap();
             }
+            //googleMap.setOnMarkerClickListener(this);
             googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
             if (houses != null) {
                 for (House house : houses) {
@@ -30,7 +42,7 @@ public class MapLoad {
                     MarkerOptions markerOptions = new MarkerOptions();
 
                     markerOptions.position(position);
-                    markerOptions.title("position");
+                    markerOptions.title(String.valueOf(house.getHouseid()));
                     markerOptions.snippet("Address : " + house.getAddress());
 
                     googleMap.addMarker(markerOptions);
@@ -47,4 +59,10 @@ public class MapLoad {
             ex.printStackTrace();
         }
     }
+/*
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        Toast.makeText(context,marker.getTitle(), Toast.LENGTH_LONG).show();
+        return true;
+    }*/
 }

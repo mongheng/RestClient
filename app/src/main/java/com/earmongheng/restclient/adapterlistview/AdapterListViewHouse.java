@@ -78,7 +78,7 @@ public class AdapterListViewHouse {
                 House currentHouse = ConvertData.getEntityObject(house, House.class);
                 List<House> houses = new ArrayList<>();
                 houses.add(currentHouse);
-                MapLoad.loadMap(houses,googleMap,fragmentManager, latLng);
+                new MapLoad(context).loadMap(houses,googleMap,fragmentManager, latLng);
             }catch (Exception ex) {
                 ex.printStackTrace();
             }

@@ -170,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
                 HouseAdapter houseAdapter = new HouseAdapter(getApplicationContext(),R.id.lvHouse,houses);
 
                 lvHouse.setAdapter(houseAdapter);
-                MapLoad.loadMap(houses,googleMap,getFragmentManager(),null);
+                new MapLoad(getBaseContext()).loadMap(houses,googleMap,getFragmentManager(),null);
             }
             catch (Exception ex) {
                 ex.printStackTrace();
@@ -206,9 +206,9 @@ public class MainActivity extends AppCompatActivity {
             TextView tvLongtitude = (TextView) convertView.findViewById(R.id.tvLongtitude);
             TextView tvHouseId = (TextView) convertView.findViewById(R.id.tvHouseId);
 
-            txtPrice.setText(String.valueOf(houses.get(position).getPrice()));
-            txtDeposit.setText(String.valueOf(houses.get(position).getDeposit()));
-            txtDescription.setText(houses.get(position).getDescription());
+            txtPrice.setText("Price: $" + String.valueOf(houses.get(position).getPrice()));
+            txtDeposit.setText("Deposit: $" + String.valueOf(houses.get(position).getDeposit()));
+            txtDescription.setText("Description: " + houses.get(position).getDescription());
             tvLatitude.setText(String.valueOf(houses.get(position).getLatitude()));
             tvLongtitude.setText(String.valueOf(houses.get(position).getLongtitude()));
             tvHouseId.setText(String.valueOf(houses.get(position).getHouseid()));
