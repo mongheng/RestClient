@@ -67,7 +67,6 @@ public class UpdateTask extends AsyncTask<String, Void, User> {
 
         try {
 
-            user.setPassword("9876543");
             Map<String, String> para = new HashMap<>();
             para.put("userid", String.valueOf(user.getUserid()));
             para.put("username", user.getUsername());

@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getBaseContext(), "You are not Connected to Internet.", Toast.LENGTH_LONG).show();
         }
 
-        new HttpAsyncTask().execute(url);
+        new HttpAsyncTask().execute(url + "initial");
 
         AdapterListViewHouse adapterListViewHouse = new AdapterListViewHouse(getBaseContext(),null,lvHouse,googleMap,getFragmentManager());
         adapterListViewHouse.viewImage();
@@ -94,8 +94,9 @@ public class MainActivity extends AppCompatActivity {
 
                 case R.id.update :
                     Toast.makeText(getBaseContext(), "Update Data", Toast.LENGTH_LONG).show();
-                    UpdateTask updateTask = new UpdateTask(getBaseContext());
-                    updateTask.execute(url + "select/3");
+                    intent = new Intent(MainActivity.this,UpdateUserActivity.class);
+                    intent.putExtra("user", user);
+                    startActivity(intent);
                     break;
 
                 case R.id.signup :

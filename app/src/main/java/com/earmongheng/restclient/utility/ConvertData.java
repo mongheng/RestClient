@@ -186,9 +186,13 @@ public class ConvertData {
             HttpHeaders httpHeaders = new HttpHeaders();
             httpHeaders.setContentType(MediaType.APPLICATION_JSON);
 
-            HttpEntity<T1> httpEntity = new HttpEntity<T1>(entityT1, httpHeaders);
-            responseEntity = restTemplate.exchange(url, HttpMethod.PUT, httpEntity, entityT2, para);
-
+            if (para != null) {
+                HttpEntity<T1> httpEntity = new HttpEntity<T1>(entityT1, httpHeaders);
+                responseEntity = restTemplate.exchange(url, HttpMethod.PUT, httpEntity, entityT2, para);
+            }else {
+                HttpEntity<T1> httpEntity = new HttpEntity<T1>((T1)getJSONObject(entityT1).toString(), httpHeaders);
+                responseEntity = restTemplate.exchange(url, HttpMethod.PUT, httpEntity, entityT2);
+            }
             T2 responseResult = responseEntity.getBody();
             ObjectMapper mapper = new ObjectMapper();
             String result = mapper.writeValueAsString(responseResult);
@@ -250,5 +254,22 @@ public class ConvertData {
             ex.printStackTrace();
         }
         return null;
+    }
+
+    private static <T> JSONObject getJSONObject(T entity) {
+        JSONObject jsonObject = null;
+        try {
+            if (entity instanceof User) {
+                User user = (User) entity;
+                jsonObject = new JSONObject();
+                jsonObject.put("username", user.getUsername());
+                jsonObject.put("telephone", user.getTelephone());
+                jsonObject.put("password",user.getPassword());
+                jsonObject.put("email",user.getEmail());
+            }
+        }catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return jsonObject;
     }
 }

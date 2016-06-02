@@ -28,6 +28,8 @@
     <string name="selectimage">SelectImage</string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
+    <string name="username">UserName :</string>
+    <string name="telephone">Telephone :</string>
     <string-array name="city_arrays">
         <item>Phnom Penh</item>
         <item>Battambang</item>
